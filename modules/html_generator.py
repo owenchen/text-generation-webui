@@ -11,7 +11,7 @@ from modules.utils import get_available_chat_styles
 
 # This is to store the paths to the thumbnails of the profile pictures
 image_cache = {}
-
+print('DEBUG ' + str(Path(__file__).resolve().parent) )
 with open(Path(__file__).resolve().parent / '../css/html_readable_style.css', 'r') as f:
     readable_css = f.read()
 with open(Path(__file__).resolve().parent / '../css/html_4chan_style.css', 'r') as css_f:
@@ -225,9 +225,13 @@ def generate_cai_chat_html(history, name1, name2, style, character, reset_cache=
     output = f'<style>{chat_styles[style]}</style><div class="chat" id="chat"><div class="messages">'
 
     # We use ?character and ?time.time() to force the browser to reset caches
-    img_bot = f'<img src="file/cache/pfp_character_thumb.png?{character}" class="pfp_character">' if Path("cache/pfp_character_thumb.png").exists() else ''
-    img_me = f'<img src="file/cache/pfp_me.png?{time.time() if reset_cache else ""}">' if Path("cache/pfp_me.png").exists() else ''
-
+    #img_bot = f'<img src="file/cache/pfp_character_thumb.png?{character}" class="pfp_character">' if Path("cache/pfp_character_thumb.png").exists() else ''
+    #img_me = f'<img src="file/cache/pfp_me.png?{time.time() if reset_cache else ""}">' if Path("cache/pfp_me.png").exists() else ''
+    img_bot = '<img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_300,w_300,f_auto,q_auto/5189742/397535_402482.png">'
+    img_me = '<img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_9000,w_1200,f_auto,q_auto/5189742/332938_274947.png">'
+    #img_bot = '<img src="' + str(Path(__file__).resolve().parent /  '../css/ai.png">'
+    #img_me = "<img src='file/jay.png'>"
+    #img_bot = f'<img src="../ai.png">'
     for i, _row in enumerate(history):
         row = [convert_to_markdown(entry) for entry in _row]
 

@@ -108,7 +108,7 @@ def create_interface():
 
     # Interface state elements
     shared.input_elements = ui.list_interface_input_elements()
-
+    print('DEBUG ', shared.input_elements)
     with gr.Blocks(css=css, analytics_enabled=False, title=title, theme=ui.theme) as shared.gradio['interface']:
 
         # Interface state
@@ -152,6 +152,7 @@ def create_interface():
         shared.gradio['interface'].load(None, gradio('show_controls'), None, _js=f'(x) => {{{ui.show_controls_js}; toggle_controls(x)}}')
         shared.gradio['interface'].load(partial(ui.apply_interface_values, {}, use_persistent=True), None, gradio(ui.list_interface_input_elements()), show_progress=False)
         shared.gradio['interface'].load(chat.redraw_html, gradio(ui_chat.reload_arr), gradio('display'))
+        #print(shared.gradio['interface'])
 
         extensions_module.create_extensions_tabs()  # Extensions tabs
         extensions_module.create_extensions_block()  # Extensions block
@@ -174,7 +175,7 @@ def create_interface():
 
 if __name__ == "__main__":
 
-    logger.info("Starting Text generation web UI")
+    logger.info("Starting aIthena - Text generation web UI for DEMO only")
     do_cmd_flags_warnings()
 
     # Load custom settings
